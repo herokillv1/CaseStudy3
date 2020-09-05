@@ -59,8 +59,9 @@ public class LoginServlet extends HttpServlet {
             dispatcher.forward(request, response);
         } else if (customerCheck.getAccount().equals(account) & customerCheck.getPassword().equals(password)) {
             List<Product> products = connectionDBOfProduct.selectAllProduct();
+            String nameCustomer = customerCheck.getName();
             request.setAttribute("listAllProduct", products);
-            request.setAttribute("account", account);
+            request.setAttribute("nameCustomer", nameCustomer);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/home_customer.jsp");
             dispatcher.forward(request, response);
         } else {
