@@ -52,7 +52,6 @@
 <div class="container-fluid menu-navbar">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -60,23 +59,20 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home </a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/home">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link1</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/product?action=shirt">Áo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link2</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/product?action=trousers">Quần</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link3</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link4</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/product?action=shoes">Giày</a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="form-inline my-2 my-lg-0" action="${pageContext.request.contextPath}/product?action=searchHome" method="post">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="regex">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
@@ -85,114 +81,23 @@
 </div>
 <!--đây là menu-->
 
-<div>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-    <h1>hihihi</h1>
-</div>
-
 <!--đây là section-->
 <div class="container">
     <div class="row">
-<%--        <jsp:useBean id="listAllProduct" scope="request" type="java.util.List"/>--%>
+        <jsp:useBean id="listAllProduct" scope="request" type="java.util.List"/>
         <c:forEach items="${listAllProduct}" var="products">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 product">
                 <div class="block-image-product">
-                    <img src="${products.getImageUrl()}" class="img-responsive" alt="không có" width="200px" height="200px">
+                    <img src="${products.getImageUrl()}" class="img-responsive img-thumbnail" alt="không có"
+                         width="300px" height="300px">
                 </div>
-                <div class="block-image-product">
+                <div class="block-image-product" style="text-align: center; margin-top: 10px">
                         ${products.getName()}
                 </div>
-                <div class="block-image-product">
-                        ${products.getPrice()}
-                </div>
-                <div>
-                    <a href="${pageContext.request.contextPath}/product?action=delete&id=${products.getID()}">Delete</a>
-                    <button type="button" class="btn btn-link" data-toggle="modal"
-                            data-target=".bs-example-modal-lg-edit">
-                        Edit
-                    </button>
+                <div class="block-image-product" style="text-align: center">
+                        ${products.getPrice()} VNĐ
                 </div>
 
-                    <%--đây là form edit product--%>
-                <div class="modal fade bs-example-modal-lg-edit" tabindex="-1" role="dialog"
-                     aria-labelledby="myLargeModalLabel">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="row">
-                                <div class="col-lg-5 col-xl-5 block-image">
-                                    <img src="${products.imageUrl}" alt="Lỗi hiển thị" class="img-responsive"
-                                         width="300px" height="500px" style="margin: 20px">
-                                </div>
-                                <div class="col-lg-6 col-xl-6 block-contact">
-                                    <h3 style="text-align: center">Edit product</h3>
-                                    <form action="${pageContext.request.contextPath}/product?action=edit&id=${products.getID()}" method="get">
-                                        <div class="form-group">
-                                            <label>
-                                                <input type="text" class="form-control" name="product-name"
-                                                       size="50"
-                                                       value="${products.getName()}">
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>
-                                                <input type="text" class="form-control" name="product-type"
-                                                       size="50"
-                                                       value="${products.getPrice()}">
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>
-                                                <input type="text" class="form-control" name="product-price"
-                                                       size="50"
-                                                       value="${products.getProductType()}">
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>
-                                                <input type="text" class="form-control"
-                                                       name="product-description" size="50"
-                                                       value="${products.getDescription()}">
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>
-                                                <input type="text" class="form-control" name="product-imageurl"
-                                                       size="50"
-                                                       value="${products.getImageUrl()}">
-                                            </label>
-                                        </div>
-                                        <div class="form-group" style="text-align: center">
-                                            <input type="submit" class="btn btn-primary" value="Edit">
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    <%--đây là form edit product--%>
             </div>
         </c:forEach>
     </div>
