@@ -52,15 +52,15 @@ public class ConnectionDBOfCustomer implements ConnectionDBCustomer {
         }
     }
 
-    @Override
-    public boolean updateCustomer(Customer customer) throws SQLException {
-        return false;
-    }
-
-    @Override
-    public boolean deleteCustomer(int id) throws SQLException {
-        return false;
-    }
+//    @Override
+//    public boolean updateCustomer(Customer customer) throws SQLException {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean deleteCustomer(int id) throws SQLException {
+//        return false;
+//    }
 
     @Override
     public List<Customer> selectAllCustomer() {

@@ -263,20 +263,19 @@
 </div>
 <!--đây là đăng ký-->
 
-<%--thông báo đăng ký thành công--%>
-<div id="myModal" class="modal fade" role="dialog">
+<%--thông báo đăng ký không thành công--%>
+<div id="myModal" class="modal fade" role="dialog" tabindex="1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Thông báo</h4>
             </div>
             <div class="modal-body">
-                <p>Đăng ký thành công. Mời bạn đăng nhập!</p>
+                <p>Đăng ký thất bại do tài khoản đã tồn tại</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-link2" data-toggle="modal"
-                        data-target=".bs-example-modal-md-login" data-dismiss="modal">
-                    Đăng nhập
+                <button type="button" class="btn btn-link2" data-toggle="modal" data-target=".bs-example-modal-lg">
+                    Đăng ký
                 </button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
@@ -288,7 +287,7 @@
         $('#myModal').modal('show');
     });
 </script>
-<%--thông báo đăng ký thành công--%>
+<%--thông báo đăng ký không thành công--%>
 
 </body>
 </html>

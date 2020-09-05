@@ -125,6 +125,41 @@ public class ConnectionDBOfProduct implements ConnectionDBProduct {
         return product;
     }
 
+    @Override
+    public List<Product> selectProductOfShirt() {
+        List<Product> products = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PRODUCT_OF_TYPE)) {
+            preparedStatement.setString(1, "Áo");
+            getListProduct(products, preparedStatement);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+
+    @Override
+    public List<Product> selectProductOfTrousers() {
+        List<Product> products = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PRODUCT_OF_TYPE)) {
+            preparedStatement.setString(1, "Quần");
+            getListProduct(products, preparedStatement);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+
+    @Override
+    public List<Product> selectProductOfShoes() {
+        List<Product> products = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PRODUCT_OF_TYPE)) {
+            preparedStatement.setString(1, "Giày");
+            getListProduct(products, preparedStatement);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
 
     private void getListProduct(List<Product> products, PreparedStatement preparedStatement) throws SQLException {
         ResultSet rs = preparedStatement.executeQuery();

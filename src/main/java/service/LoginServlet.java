@@ -41,9 +41,6 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 
     private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String account = request.getParameter("customer-account");

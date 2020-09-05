@@ -264,7 +264,7 @@
 <!--đây là đăng ký-->
 
 <%--thông báo đăng ký không thành công--%>
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myModal" class="modal fade" role="dialog" tabindex="1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
