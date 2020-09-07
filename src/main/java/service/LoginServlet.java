@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
         connectionDBOfCustomer = new ConnectionDBOfCustomer();
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null)
             action = "";
@@ -41,6 +41,14 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        action(request, response);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        action(request, response);
+    }
+
 
     private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String account = request.getParameter("customer-account");
@@ -52,20 +60,22 @@ public class LoginServlet extends HttpServlet {
             List<Product> products = connectionDBOfProduct.selectAllProduct();
             request.setAttribute("listAllProduct", products);
             request.setAttribute("account", account);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/home_admin.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
             dispatcher.forward(request, response);
-        } else if (customerCheck.getAccount().equals(account) & customerCheck.getPassword().equals(password)) {
+        } else if (customerCheck == null){
+            List<Product> products = connectionDBOfProduct.selectAllProduct();
+            request.setAttribute("listAllProduct", products);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/home_not_login.jsp");
+            dispatcher.forward(request, response);
+        }else if (customerCheck.getAccount().equals(account) & customerCheck.getPassword().equals(password)) {
             List<Product> products = connectionDBOfProduct.selectAllProduct();
             String nameCustomer = customerCheck.getName();
             request.setAttribute("listAllProduct", products);
             request.setAttribute("nameCustomer", nameCustomer);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/home_customer.jsp");
             dispatcher.forward(request, response);
-        } else {
-            response.setContentType("text/html");
-            PrintWriter out = response.getWriter();
-            out.println("Lỗi");
         }
+
 
     }
 

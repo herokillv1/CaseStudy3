@@ -128,8 +128,9 @@ public class ConnectionDBOfProduct implements ConnectionDBProduct {
     @Override
     public List<Product> selectProductOfShirt() {
         List<Product> products = new ArrayList<>();
+//        String shirt = "Áo";
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PRODUCT_OF_TYPE)) {
-            preparedStatement.setString(1, "Áo");
+            preparedStatement.setString(1,"Áo");
             getListProduct(products, preparedStatement);
         } catch (SQLException e) {
             e.printStackTrace();

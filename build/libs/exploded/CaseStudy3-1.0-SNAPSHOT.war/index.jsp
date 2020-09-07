@@ -72,6 +72,8 @@
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0" action="${pageContext.request.contextPath}/product?action=searchHome" method="post">
+                    <button class="btn btn-primary" type="submit"><font color="black" size="+1">Thêm</font></button>
+                    <p>&nbsp;&nbsp;</p>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="regex">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>

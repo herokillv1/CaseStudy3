@@ -70,10 +70,10 @@ public class ProductServlet extends HttpServlet {
 
     private void searchProductByName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String regex = request.getParameter("regex");
-        String account = request.getParameter("account");
+        String nameCustomer = request.getParameter("name");
         List<Product> products = connectionDBOfProduct.selectProductByName(regex);
         request.setAttribute("listAllProduct", products);
-        request.setAttribute("account", account);
+        request.setAttribute("nameCustomer", nameCustomer);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/home_customer.jsp");
         dispatcher.forward(request, response);
     }
@@ -88,22 +88,28 @@ public class ProductServlet extends HttpServlet {
 
     private void listProductOfShoes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> products = connectionDBOfProduct.selectProductOfShoes();
+        String nameCustomer = request.getParameter("name");
         request.setAttribute("listAllProduct", products);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+        request.setAttribute("nameCustomer", nameCustomer);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/home_customer.jsp");
         dispatcher.forward(request, response);
     }
 
     private void listProductOfTrousers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> products = connectionDBOfProduct.selectProductOfTrousers();
+        String nameCustomer = request.getParameter("name");
         request.setAttribute("listAllProduct", products);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+        request.setAttribute("nameCustomer", nameCustomer);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/home_customer.jsp");
         dispatcher.forward(request, response);
     }
 
     private void listProductOfShirt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> products = connectionDBOfProduct.selectProductOfShirt();
+        String nameCustomer = request.getParameter("name");
         request.setAttribute("listAllProduct", products);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+        request.setAttribute("nameCustomer", nameCustomer);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/home_customer.jsp");
         dispatcher.forward(request, response);
     }
 
