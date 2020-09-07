@@ -22,7 +22,7 @@
 <body>
 <!--đây là header-->
 <header>
-    <div class="container-fluid header" id="header">
+    <div class="container-fluid header" id="header" style="border-bottom: solid 4px lightgrey">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-lg-2 col-xl-2 block-image">
             </div>
@@ -85,15 +85,17 @@
     <div class="row">
         <jsp:useBean id="listAllProduct" scope="request" type="java.util.List"/>
         <c:forEach items="${listAllProduct}" var="products">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 product" style="border: solid 1px lightgrey">
-                <div class="block-status-product" style="height: 30px; text-align: center">
-                    <c:if test='${products.getAmount() == 0}'>
-                        <span style="color: red">Tạm hết hàng</span>
-                    </c:if>
-                </div>
-                <div class="block-image-product">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 product" >
+                <div class="block-image-product" style="position: relative">
                     <img src="${products.getImageUrl()}" class="img-responsive img-thumbnail" alt="không có"
                          width="300px" height="300px">
+                    <div class="block-status-product" style="height: 30px; text-align: center ; position: absolute ; top: 10px ; left: 10px ;background-color: #ff253a">
+                    <h5>
+                        <c:if test='${products.getAmount() == 0}'>
+                            <span style="color: white ; margin: 5px">Hết hàng</span>
+                        </c:if>
+                    </h5>
+                    </div>
                 </div>
                 <div class="block-name-product" style="text-align: center; margin-top: 10px">
                         ${products.getName()}
