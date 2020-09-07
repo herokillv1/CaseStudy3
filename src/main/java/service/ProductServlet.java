@@ -74,7 +74,7 @@ public class ProductServlet extends HttpServlet {
         List<Product> products = connectionDBOfProduct.selectProductByName(regex);
         request.setAttribute("listAllProduct", products);
         request.setAttribute("nameCustomer", nameCustomer);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/home_customer.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_customer.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -82,7 +82,7 @@ public class ProductServlet extends HttpServlet {
         String regex = request.getParameter("regex");
         List<Product> products = connectionDBOfProduct.selectProductByName(regex);
         request.setAttribute("listAllProduct", products);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/index.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -91,7 +91,7 @@ public class ProductServlet extends HttpServlet {
 //        String nameCustomer = request.getParameter("name");
 //        request.setAttribute("listAllProduct", products);
 //        request.setAttribute("nameCustomer", nameCustomer);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/home_customer.jsp");
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_customer.jsp");
 //        dispatcher.forward(request, response);
 //    }
 //
@@ -100,7 +100,7 @@ public class ProductServlet extends HttpServlet {
 //        String nameCustomer = request.getParameter("name");
 //        request.setAttribute("listAllProduct", products);
 //        request.setAttribute("nameCustomer", nameCustomer);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/home_customer.jsp");
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_customer.jsp");
 //        dispatcher.forward(request, response);
 //    }
 //
@@ -109,7 +109,7 @@ public class ProductServlet extends HttpServlet {
 //        String nameCustomer = request.getParameter("name");
 //        request.setAttribute("listAllProduct", products);
 //        request.setAttribute("nameCustomer", nameCustomer);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/home_customer.jsp");
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_customer.jsp");
 //        dispatcher.forward(request, response);
 //    }
 
@@ -119,7 +119,7 @@ public class ProductServlet extends HttpServlet {
         request.setAttribute("product", product);
         List<Product> products = connectionDBOfProduct.selectAllProduct();
         request.setAttribute("listAllProduct", products);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/home_admin_edit.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_admin_edit.jsp");
         dispatcher.forward(request, response);
     }
 
