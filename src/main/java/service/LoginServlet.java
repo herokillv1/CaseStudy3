@@ -15,15 +15,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "LoginServlet", urlPatterns = "/login")
+@WebServlet(name = "service.RegistrationServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
 
-    private ConnectionDBOfCustomer connectionDBOfCustomer;
-    private ConnectionDBOfProduct connectionDBOfProduct;
+    ConnectionDBOfCustomer connectionDBOfCustomer = new ConnectionDBOfCustomer();
+    ConnectionDBOfProduct connectionDBOfProduct = new ConnectionDBOfProduct();
 
-    public void init() {
-        connectionDBOfProduct = new ConnectionDBOfProduct();
-        connectionDBOfCustomer = new ConnectionDBOfCustomer();
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        action(request, response);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        action(request, response);
+
     }
 
     private void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,15 +45,6 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        action(request, response);
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        action(request, response);
-    }
-
-
     private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String account = request.getParameter("customer-account");
         String password = request.getParameter("customer-password");
@@ -60,23 +55,27 @@ public class LoginServlet extends HttpServlet {
             List<Product> products = connectionDBOfProduct.selectAllProduct();
             request.setAttribute("listAllProduct", products);
             request.setAttribute("account", account);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_admin.jsp");
             dispatcher.forward(request, response);
-        } else if (customerCheck == null){
+        } else if(customerCheck == null){
             List<Product> products = connectionDBOfProduct.selectAllProduct();
             request.setAttribute("listAllProduct", products);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/home_not_login.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_login_not_done.jsp");
             dispatcher.forward(request, response);
-        }else if (customerCheck.getAccount().equals(account) & customerCheck.getPassword().equals(password)) {
-            List<Product> products = connectionDBOfProduct.selectAllProduct();
-            String nameCustomer = customerCheck.getName();
-            request.setAttribute("listAllProduct", products);
-            request.setAttribute("nameCustomer", nameCustomer);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/home_customer.jsp");
-            dispatcher.forward(request, response);
+        } else if (customerCheck.getAccount().equals(account)) {
+            if(customerCheck.getPassword().equals(password)) {
+                List<Product> products = connectionDBOfProduct.selectAllProduct();
+                request.setAttribute("listAllProduct", products);
+                request.setAttribute("account", account);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_customer.jsp");
+                dispatcher.forward(request, response);
+            }else {
+                List<Product> products = connectionDBOfProduct.selectAllProduct();
+                request.setAttribute("listAllProduct", products);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_login_not_done.jsp");
+                dispatcher.forward(request, response);
+            }
         }
-
-
     }
 
     private void registration(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -96,14 +95,15 @@ public class LoginServlet extends HttpServlet {
         if (customerCheck != null) {
             List<Product> products = connectionDBOfProduct.selectAllProduct();
             request.setAttribute("listAllProduct", products);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/home_regis_not_done.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_regis_not_done.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            Customer customer = new Customer(name, age, render, email, address, phone, account, password, dateCreate);
+            connectionDBOfCustomer.insertCustomer(customer);
+            List<Product> products = connectionDBOfProduct.selectAllProduct();
+            request.setAttribute("listAllProduct", products);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_regis_done.jsp");
             dispatcher.forward(request, response);
         }
-        Customer customer = new Customer(name, age, render, email, address, phone, account, password, dateCreate);
-        connectionDBOfCustomer.insertCustomer(customer);
-        List<Product> products = connectionDBOfProduct.selectAllProduct();
-        request.setAttribute("listAllProduct", products);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/home_regis_done.jsp");
-        dispatcher.forward(request, response);
     }
 }
