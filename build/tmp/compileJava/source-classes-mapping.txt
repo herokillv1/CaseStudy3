@@ -2,21 +2,21 @@ CharsetFilter.java
  CharsetFilter
 connection/ConnectionDBOfCustomer.java
  connection.ConnectionDBOfCustomer
-connection/ConnectionDBProduct.java
- connection.ConnectionDBProduct
+model/Order.java
+ model.Order
 model/Customer.java
  model.Customer
 connection/ConnectionDBCustomer.java
  connection.ConnectionDBCustomer
+service/LoginServlet.java
+ service.LoginServlet
+connection/ConnectionDBProduct.java
+ connection.ConnectionDBProduct
 connection/ConnectionDBOfProduct.java
  connection.ConnectionDBOfProduct
 service/HomeServlet.java
  service.HomeServlet
 service/ProductServlet.java
  service.ProductServlet
-model/Order.java
- model.Order
 model/Product.java
  model.Product
-service/LoginServlet.java
- service.LoginServlet

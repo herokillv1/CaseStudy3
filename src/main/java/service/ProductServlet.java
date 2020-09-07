@@ -48,13 +48,13 @@ public class ProductServlet extends HttpServlet {
                 deleteProductById(request, response);
                 break;
             case "shirt":
-                listProductOfShirt(request, response);
+//                listProductOfShirt(request, response);
                 break;
             case "trousers":
-                listProductOfTrousers(request, response);
+//                listProductOfTrousers(request, response);
                 break;
             case "shoes":
-                listProductOfShoes(request, response);
+//                listProductOfShoes(request, response);
                 break;
             case "searchHome":
                 searchProductByNameInHome(request, response);
@@ -86,32 +86,32 @@ public class ProductServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void listProductOfShoes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> products = connectionDBOfProduct.selectProductOfShoes();
-        String nameCustomer = request.getParameter("name");
-        request.setAttribute("listAllProduct", products);
-        request.setAttribute("nameCustomer", nameCustomer);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/home_customer.jsp");
-        dispatcher.forward(request, response);
-    }
-
-    private void listProductOfTrousers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> products = connectionDBOfProduct.selectProductOfTrousers();
-        String nameCustomer = request.getParameter("name");
-        request.setAttribute("listAllProduct", products);
-        request.setAttribute("nameCustomer", nameCustomer);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/home_customer.jsp");
-        dispatcher.forward(request, response);
-    }
-
-    private void listProductOfShirt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> products = connectionDBOfProduct.selectProductOfShirt();
-        String nameCustomer = request.getParameter("name");
-        request.setAttribute("listAllProduct", products);
-        request.setAttribute("nameCustomer", nameCustomer);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/home_customer.jsp");
-        dispatcher.forward(request, response);
-    }
+//    private void listProductOfShoes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        List<Product> products = connectionDBOfProduct.selectProductOfShoes();
+//        String nameCustomer = request.getParameter("name");
+//        request.setAttribute("listAllProduct", products);
+//        request.setAttribute("nameCustomer", nameCustomer);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("/home_customer.jsp");
+//        dispatcher.forward(request, response);
+//    }
+//
+//    private void listProductOfTrousers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        List<Product> products = connectionDBOfProduct.selectProductOfTrousers();
+//        String nameCustomer = request.getParameter("name");
+//        request.setAttribute("listAllProduct", products);
+//        request.setAttribute("nameCustomer", nameCustomer);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("/home_customer.jsp");
+//        dispatcher.forward(request, response);
+//    }
+//
+//    private void listProductOfShirt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        List<Product> products = connectionDBOfProduct.selectProductOfShirt();
+//        String nameCustomer = request.getParameter("name");
+//        request.setAttribute("listAllProduct", products);
+//        request.setAttribute("nameCustomer", nameCustomer);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("/home_customer.jsp");
+//        dispatcher.forward(request, response);
+//    }
 
     private void editProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));

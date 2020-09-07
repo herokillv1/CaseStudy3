@@ -117,7 +117,8 @@ public class ConnectionDBOfProduct implements ConnectionDBProduct {
                 long price = rs.getLong("price_product");
                 String description = rs.getString("description_product");
                 String imageUrl = rs.getString("imageUrl_product");
-                product = new Product(name, type, price, description, imageUrl);
+                int amount =rs.getInt("amount_product");
+                product = new Product(name, type, price, description, imageUrl,amount);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -126,11 +127,10 @@ public class ConnectionDBOfProduct implements ConnectionDBProduct {
     }
 
     @Override
-    public List<Product> selectProductOfShirt() {
+    public List<Product> selectProductOfShirt(String type) {
         List<Product> products = new ArrayList<>();
-//        String shirt = "Áo";
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PRODUCT_OF_TYPE)) {
-            preparedStatement.setString(1,"Áo");
+            preparedStatement.setString(1,type);
             getListProduct(products, preparedStatement);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -139,10 +139,10 @@ public class ConnectionDBOfProduct implements ConnectionDBProduct {
     }
 
     @Override
-    public List<Product> selectProductOfTrousers() {
+    public List<Product> selectProductOfTrousers(String type) {
         List<Product> products = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PRODUCT_OF_TYPE)) {
-            preparedStatement.setString(1, "Quần");
+            preparedStatement.setString(1, type);
             getListProduct(products, preparedStatement);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -151,10 +151,10 @@ public class ConnectionDBOfProduct implements ConnectionDBProduct {
     }
 
     @Override
-    public List<Product> selectProductOfShoes() {
+    public List<Product> selectProductOfShoes(String type) {
         List<Product> products = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PRODUCT_OF_TYPE)) {
-            preparedStatement.setString(1, "Giày");
+            preparedStatement.setString(1, type);
             getListProduct(products, preparedStatement);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -171,7 +171,8 @@ public class ConnectionDBOfProduct implements ConnectionDBProduct {
             long price = rs.getLong("price_product");
             String description = rs.getString("description_product");
             String imageUrl = rs.getString("imageUrl_product");
-            products.add(new Product(id, name, type, price, description, imageUrl));
+            int amount =rs.getInt("amount_product");
+            products.add(new Product(id, name, type, price, description, imageUrl,amount));
         }
     }
 }

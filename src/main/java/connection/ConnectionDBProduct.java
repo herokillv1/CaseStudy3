@@ -20,10 +20,10 @@ public interface ConnectionDBProduct {
 
     List<Product> selectAllProduct();
 
-    List<Product> selectProductOfShirt();
+    List<Product> selectProductOfShirt(String type);
 
-    List<Product> selectProductOfTrousers();
+    List<Product> selectProductOfTrousers(String type);
 
-    List<Product> selectProductOfShoes();
+    List<Product> selectProductOfShoes(String type);
 
 }

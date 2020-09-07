@@ -264,5 +264,32 @@
     </div>
 </div>
 <!--đây là đăng ký-->
+
+<%--thông báo đăng nhập không thành công--%>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Thông báo</h4>
+            </div>
+            <div class="modal-body">
+                <p>Đăng nhập thất bại do tài khoản không tồn tại!</p>
+                <p>Bạn muốn đăng nhập lại?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link1" data-toggle="modal" data-target=".bs-example-modal-md-login" data-dismiss="modal">
+                    Đăng nhập
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(window).on('load',function(){
+        $('#myModal').modal('show');
+    });
+</script>
+<%--thông báo đăng nhập không thành công--%>
 </body>
 </html>

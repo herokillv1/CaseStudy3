@@ -25,13 +25,13 @@ public class HomeServlet extends HttpServlet {
         }
         switch (action) {
             case "shirt":
-//                listShirt(request, response);
+                listShirt(request, response);
                 break;
             case "trousers":
-//                listTrousers(request, response);
+                listTrousers(request, response);
                 break;
             case "shoes":
-//                listShoes(request, response);
+                listShoes(request, response);
                 break;
             case "search":
                 listSearch(request, response);
@@ -41,27 +41,27 @@ public class HomeServlet extends HttpServlet {
                 break;
         }
     }
-//    private void listShirt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String type = request.getParameter("type");
-//        List<Product> products = connectionDBOfProduct.selectProductOfShirt(type);
-//        request.setAttribute("listAllProduct", products);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
-//        dispatcher.forward(request, response);
-//    }
-//    private void listTrousers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String type = request.getParameter("type");
-//        List<Product> products = connectionDBOfProduct.selectProductOfTrousers(type);
-//        request.setAttribute("listAllProduct", products);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
-//        dispatcher.forward(request, response);
-//    }
-//    private void listShoes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String type = request.getParameter("type");
-//        List<Product> products = connectionDBOfProduct.selectProductOfShoes(type);
-//        request.setAttribute("listAllProduct", products);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
-//        dispatcher.forward(request, response);
-//    }
+    private void listShirt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String type = request.getParameter("type");
+        List<Product> products = connectionDBOfProduct.selectProductOfShirt(type);
+        request.setAttribute("listAllProduct", products);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void listTrousers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String type = request.getParameter("type");
+        List<Product> products = connectionDBOfProduct.selectProductOfTrousers(type);
+        request.setAttribute("listAllProduct", products);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void listShoes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String type = request.getParameter("type");
+        List<Product> products = connectionDBOfProduct.selectProductOfShoes(type);
+        request.setAttribute("listAllProduct", products);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
+        dispatcher.forward(request, response);
+    }
     private void listSearch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String regex = request.getParameter("regex");
         List<Product> products = connectionDBOfProduct.selectProductByName(regex);
@@ -72,7 +72,7 @@ public class HomeServlet extends HttpServlet {
     private void listAllProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> products = connectionDBOfProduct.selectAllProduct();
         request.setAttribute("listAllProduct", products);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
         dispatcher.forward(request, response);
     }
 }
