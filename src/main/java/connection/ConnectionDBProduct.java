@@ -6,24 +6,23 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface ConnectionDBProduct {
-    void insertProduct(Product product) throws SQLException;
+    public boolean insertProduct(Product product) throws SQLException;
 
-    boolean updateProduct(Product product) throws SQLException;
+    public boolean updateProduct(Product product) throws SQLException;
 
-    boolean deleteProduct(int id) throws SQLException;
+    public boolean deleteProduct(int id) throws SQLException;
 
-    List<Product> selectProductByName(String name);
+    public List<Product> selectProductByName(String name);
 
-    Product selectProductByCode(int id);
+    public Product selectProductByCode(int code);
 
-    Product selectProductById(int id);
+    public Product selectProductById(int id);
 
-    List<Product> selectAllProduct();
+    public List<Product> selectAllProduct();
 
-    List<Product> selectProductOfShirt(String type);
+    public List<Product> selectProductOfShirt(String type);
 
-    List<Product> selectProductOfTrousers(String type);
+    public List<Product> selectProductOfTrousers(String type);
 
-    List<Product> selectProductOfShoes(String type);
-
+    public List<Product> selectProductOfShoes(String type);
 }

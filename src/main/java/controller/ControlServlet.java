@@ -70,7 +70,19 @@ public class ControlServlet extends HttpServlet {
         }
     }
     private void editProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        int id = Integer.parseInt(request.getParameter("id"));
+        int code = Integer.parseInt(request.getParameter("product-code"));
+        String name = request.getParameter("product-name");
+        String type = request.getParameter("product-type");
+        long price = Long.parseLong(request.getParameter("product-price"));
+        String description = request.getParameter("product-description");
+        String imageUrl = request.getParameter("product-imageUrl");
+        int amount = Integer.parseInt(request.getParameter("product-amount"));
+        Product product = new Product(id, code, name, type, price, description, imageUrl, amount);
+        if (connectionDBOfProduct.updateProduct(product)) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin");
+            dispatcher.forward(request, response);
+        }
     }
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -80,5 +92,19 @@ public class ControlServlet extends HttpServlet {
         }
     }
     private void createProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String account = request.getParameter("account");
+        request.setAttribute("account", account);
+        int code = Integer.parseInt(request.getParameter("product-code"));
+        String name = request.getParameter("product-name");
+        String type = request.getParameter("product-type");
+        long price = Long.parseLong(request.getParameter("product-price"));
+        String description = request.getParameter("product-description");
+        String imageUrl = request.getParameter("product-imageUrl");
+        int amount = Integer.parseInt(request.getParameter("product-amount"));
+        Product product = new Product(code, name, type, price, description, imageUrl, amount);
+        if (connectionDBOfProduct.insertProduct(product)) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin");
+            dispatcher.forward(request, response);
+        }
     }
 }
