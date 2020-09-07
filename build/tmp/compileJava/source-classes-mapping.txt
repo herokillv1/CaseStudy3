@@ -16,7 +16,5 @@ connection/ConnectionDBOfProduct.java
  connection.ConnectionDBOfProduct
 service/HomeServlet.java
  service.HomeServlet
-service/ProductServlet.java
- service.ProductServlet
 model/Product.java
  model.Product
