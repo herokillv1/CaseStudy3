@@ -49,6 +49,8 @@ public class LoginServlet extends HttpServlet {
         String account = request.getParameter("customer-account");
         String password = request.getParameter("customer-password");
 
+        String controller = "login-not-done-Modal";
+
         Customer customerCheck = connectionDBOfCustomer.selectCustomerByName(account);
 
         if (account.equals("admin") & password.equals("admin")) {
@@ -58,21 +60,25 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_admin.jsp");
             dispatcher.forward(request, response);
         } else if(customerCheck == null){
+            request.setAttribute("controller",controller);
             List<Product> products = connectionDBOfProduct.selectAllProduct();
             request.setAttribute("listAllProduct", products);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_login_not_done.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home.jsp");
             dispatcher.forward(request, response);
         } else if (customerCheck.getAccount().equals(account)) {
             if(customerCheck.getPassword().equals(password)) {
                 List<Product> products = connectionDBOfProduct.selectAllProduct();
                 request.setAttribute("listAllProduct", products);
                 request.setAttribute("account", account);
+                String name = customerCheck.getName();
+                request.setAttribute("name",name);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_customer.jsp");
                 dispatcher.forward(request, response);
             }else {
+                request.setAttribute("controller",controller);
                 List<Product> products = connectionDBOfProduct.selectAllProduct();
                 request.setAttribute("listAllProduct", products);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_login_not_done.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home.jsp");
                 dispatcher.forward(request, response);
             }
         }
@@ -93,16 +99,20 @@ public class LoginServlet extends HttpServlet {
         Customer customerCheck = connectionDBOfCustomer.selectCustomerByName(account);
 
         if (customerCheck != null) {
+            String controller = "registration-not-done-Modal";
+            request.setAttribute("controller", controller);
             List<Product> products = connectionDBOfProduct.selectAllProduct();
             request.setAttribute("listAllProduct", products);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_regis_not_done.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home.jsp");
             dispatcher.forward(request, response);
         } else {
+            String controller = "registration-done-Modal";
+            request.setAttribute("controller", controller);
             Customer customer = new Customer(name, age, render, email, address, phone, account, password, dateCreate);
             connectionDBOfCustomer.insertCustomer(customer);
             List<Product> products = connectionDBOfProduct.selectAllProduct();
             request.setAttribute("listAllProduct", products);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_regis_done.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home.jsp");
             dispatcher.forward(request, response);
         }
     }

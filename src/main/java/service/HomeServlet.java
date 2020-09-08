@@ -65,9 +65,16 @@ public class HomeServlet extends HttpServlet {
     private void listSearch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String regex = request.getParameter("regex");
         List<Product> products = connectionDBOfProduct.selectProductByName(regex);
-        request.setAttribute("listAllProduct", products);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home.jsp");
-        dispatcher.forward(request, response);
+        if (products.size() > 0){
+            request.setAttribute("listAllProduct", products);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home.jsp");
+            dispatcher.forward(request, response);
+        }else {
+            request.setAttribute("mess","");
+            request.setAttribute("listAllProduct", products);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home.jsp");
+            dispatcher.forward(request, response);
+        }
     }
     private void listAllProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> products = connectionDBOfProduct.selectAllProduct();

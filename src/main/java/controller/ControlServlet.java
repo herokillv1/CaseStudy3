@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 @WebServlet(name = "ControlServlet", urlPatterns = "/control")
 public class ControlServlet extends HttpServlet {
     ConnectionDBOfProduct connectionDBOfProduct = new ConnectionDBOfProduct();
@@ -57,7 +56,7 @@ public class ControlServlet extends HttpServlet {
         String account = request.getParameter("account");
         Customer customer = new Customer(name, age, render, email, address, phone, account);
         if(connectionDBOfCustomer.updateCustomer(customer)){
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/customer");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/customer?action=updatecustomer");
             dispatcher.forward(request, response);
         }
     }
@@ -65,7 +64,7 @@ public class ControlServlet extends HttpServlet {
         String account = request.getParameter("customer-account");
         String newPassword = request.getParameter("customer-renew-pass");
         if(connectionDBOfCustomer.updatePasswordCustomer(account,newPassword)){
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/customer");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/customer?action=alert");
             dispatcher.forward(request, response);
         }
     }

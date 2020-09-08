@@ -89,24 +89,35 @@ public class AdminServlet extends HttpServlet {
         request.setAttribute("account", account);
         String regex = request.getParameter("regex");
         List<Product> products = connectionDBOfProduct.selectProductByName(regex);
+        if (products.size() > 0){
+            request.setAttribute("listAllProduct", products);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_admin.jsp");
+            dispatcher.forward(request, response);
+        }else {
+            request.setAttribute("mess","");
+            request.setAttribute("listAllProduct", products);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_admin.jsp");
+            dispatcher.forward(request, response);
+        }
+    }
+
+    private void deleleProductById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String controller = "deleteModal";
+        request.setAttribute("controller", controller);
+        String account = request.getParameter("account");
+        request.setAttribute("account", account);
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = connectionDBOfProduct.selectProductById(id);
+        request.setAttribute("product", product);
+        List<Product> products = connectionDBOfProduct.selectAllProduct();
         request.setAttribute("listAllProduct", products);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_admin.jsp");
         dispatcher.forward(request, response);
     }
 
-    private void deleleProductById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String account = request.getParameter("account");
-        request.setAttribute("account", account);
-        int id = Integer.parseInt(request.getParameter("id"));
-        Product product = connectionDBOfProduct.selectProductById(id);
-        request.setAttribute("product", product);
-        List<Product> products = connectionDBOfProduct.selectAllProduct();
-        request.setAttribute("listAllProduct", products);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_admin_delete.jsp");
-        dispatcher.forward(request, response);
-    }
-
     private void editProductById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String controller = "editModal";
+        request.setAttribute("controller", controller);
         String account = request.getParameter("account");
         request.setAttribute("account", account);
         int id = Integer.parseInt(request.getParameter("id"));
@@ -114,7 +125,7 @@ public class AdminServlet extends HttpServlet {
         request.setAttribute("product", product);
         List<Product> products = connectionDBOfProduct.selectAllProduct();
         request.setAttribute("listAllProduct", products);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_admin_edit.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_admin.jsp");
         dispatcher.forward(request, response);
     }
 
