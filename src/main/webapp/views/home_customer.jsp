@@ -70,6 +70,7 @@
                 <form class="form-inline my-2 my-lg-0"
                       action="${pageContext.request.contextPath}/customer?action=search&account=${requestScope["account"]}"
                       method="post">
+                    <a href="${pageContext.request.contextPath}/order?account=${requestScope["account"]}"><font color="black" size="+1">Giỏ hàng &ensp;</font></a>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
                            name="regex">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -110,7 +111,7 @@
                         ${products.getPrice()}
                 </div>
                 <div class="block-button" style="text-align: center">
-                    <a href="${pageContext.request.contextPath}/customer?action=add&id=${products.getID()}">Thêm</a>
+                    <a href="${pageContext.request.contextPath}/order?action=add&id=${products.getID()}&account=${requestScope["account"]}&amount=1">Thêm</a>
                 </div>
             </div>
         </c:forEach>

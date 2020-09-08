@@ -215,7 +215,7 @@
                     <form action="${pageContext.request.contextPath}/login?action=registration" method="post">
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                <span class="input-group-text"><i class="fa fa-user"></i></span>
                             </div>
                             <input type="text" class="form-control" placeholder="Enter your name"
                                    required="" name="customer-name" size="50">

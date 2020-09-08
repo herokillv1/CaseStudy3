@@ -1,5 +1,5 @@
-model/Product.java
- model.Product
+service/CustomerServlet.java
+ service.CustomerServlet
 CharsetFilter.java
  CharsetFilter
 service/LoginServlet.java
@@ -12,15 +12,21 @@ model/Customer.java
  model.Customer
 connection/ConnectionDBCustomer.java
  connection.ConnectionDBCustomer
+connection/ConnectionDBOfOrder.java
+ connection.ConnectionDBOfOrder
+connection/ConnectionDBOrder.java
+ connection.ConnectionDBOrder
 connection/ConnectionDBOfProduct.java
  connection.ConnectionDBOfProduct
-model/Order.java
- model.Order
-service/AdminServlet.java
- service.AdminServlet
 service/HomeServlet.java
  service.HomeServlet
 controller/ControlServlet.java
  controller.ControlServlet
-service/CustomerServlet.java
- service.CustomerServlet
+model/Order.java
+ model.Order
+model/Product.java
+ model.Product
+service/AdminServlet.java
+ service.AdminServlet
+service/OrderServlet.java
+ service.OrderServlet

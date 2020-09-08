@@ -72,6 +72,8 @@ public class CustomerServlet extends HttpServlet {
         String account = request.getParameter("account");
         request.setAttribute("account", account);
         Customer customer = connectionDBOfCustomer.selectCustomerByName(account);
+        String name = customer.getName();
+        request.setAttribute("name", name);
         request.setAttribute("customer", customer);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_customer_in_account.jsp");
         dispatcher.forward(request, response);
@@ -96,6 +98,8 @@ public class CustomerServlet extends HttpServlet {
         String account = request.getParameter("account");
         request.setAttribute("account", account);
         Customer customer = connectionDBOfCustomer.selectCustomerByName(account);
+        String name = customer.getName();
+        request.setAttribute("name", name);
         request.setAttribute("customer", customer);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/views/home_customer_in_account.jsp");
         dispatcher.forward(request, response);

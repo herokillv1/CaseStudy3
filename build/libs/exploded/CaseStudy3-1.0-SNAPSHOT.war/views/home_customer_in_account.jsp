@@ -55,13 +55,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/customer?account=${requestScope["account"]}">Trang chủ</a>
+                        <a class="nav-link"
+                           href="${pageContext.request.contextPath}/customer?account=${requestScope["account"]}">Trang
+                            chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/customer?action=repassword&account=${requestScope["account"]}">Đổi mật khẩu</a>
+                        <a class="nav-link"
+                           href="${pageContext.request.contextPath}/customer?action=repassword&account=${requestScope["account"]}">Đổi
+                            mật khẩu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/customer?action=historycart&account=${requestScope["account"]}">Lịch sử mua hàng</a>
+                        <a class="nav-link"
+                           href="${pageContext.request.contextPath}/customer?action=historycart&account=${requestScope["account"]}">Lịch
+                            sử mua hàng</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0"
@@ -80,30 +86,37 @@
 <!--đây là section-->
 <div class="container">
     <c:if test='${requestScope["customer"] != null}'>
-        <form action="${pageContext.request.contextPath}/control?action=updateCustomer&account=${requestScope["account"]}" method="post">
+        <form action="${pageContext.request.contextPath}/control?action=updateCustomer&account=${requestScope["account"]}"
+              method="post">
             <div class="form-group">
                 <label>Full name:&ensp;</label>
-                <input type="text" class="form-control" name="customer-name" value="${requestScope["customer"].getName()}">
+                <input type="text" class="form-control" name="customer-name"
+                       value="${requestScope["customer"].getName()}">
             </div>
             <div class="form-group">
                 <label>Age:&ensp;</label>
-                <input type="number" class="form-control" name="customer-age" value="${requestScope["customer"].getAge()}">
+                <input type="number" class="form-control" name="customer-age"
+                       value="${requestScope["customer"].getAge()}">
             </div>
             <div class="form-group">
                 <label>Render:&ensp;</label>
-                <input type="text" class="form-control" name="customer-render" value="${requestScope["customer"].getRender()}">
+                <input type="text" class="form-control" name="customer-render"
+                       value="${requestScope["customer"].getRender()}">
             </div>
             <div class="form-group">
                 <label>Email:&ensp;</label>
-                <input type="text" class="form-control" name="customer-email" value="${requestScope["customer"].getEmail()}">
+                <input type="text" class="form-control" name="customer-email"
+                       value="${requestScope["customer"].getEmail()}">
             </div>
             <div class="form-group">
                 <label>Address:&ensp;</label>
-                <input type="text" class="form-control" name="customer-address" value="${requestScope["customer"].getAddress()}">
+                <input type="text" class="form-control" name="customer-address"
+                       value="${requestScope["customer"].getAddress()}">
             </div>
             <div class="form-group">
                 <label>Phone:&ensp;</label>
-                <input type="text" class="form-control" name="customer-phone" value="${requestScope["customer"].getPhone()}">
+                <input type="text" class="form-control" name="customer-phone"
+                       value="${requestScope["customer"].getPhone()}">
             </div>
             <button type="submit" class="btn btn-primary">Cập nhât</button>
         </form>
@@ -183,27 +196,36 @@
             <div id="rePassword" class="col-lg-10 col-xl-10 modal fade " role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header" style="text-align: center">
-                            <h4 class="modal-title">Thông báo</h4>
+                        <div class="modal-header">
+                            <h4 class="modal-title" style="text-align: center">Thông báo</h4>
                         </div>
                         <form action="${pageContext.request.contextPath}/control?action=rePassword&account=${requestScope["account"]}"
                               method="post">
-                            <div class="form-group">
-                                <label>Account:&ensp;</label>
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Account </span>
+                                </div>
                                 <input type="text" class="form-control" name="customer-account" readonly
                                        value="${requestScope["account"]}">
                             </div>
-                            <div class="form-group">
+
+                            <div class="form-group col-xs-1 col-sm-1 col-md-1 col-lg-5 col-xl-5"></div>
+                            <div class="col-xs-11 col-sm-11 col-md-11 col-lg-7 col-xl-7">
                                 <label>New-Password:&ensp;</label>
                                 <input type="password" class="form-control" name="customer-new-pass"
                                        placeholder="New Password">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-xs-1 col-sm-1 col-md-1 col-lg-5 col-xl-5"></div>
+                            <div class="col-xs-11 col-sm-11 col-md-11 col-lg-7 col-xl-7">
                                 <label>Renew-Password:&ensp;</label>
                                 <input type="password" class="form-control" name="customer-renew-pass"
                                        placeholder="Renew Password">
                             </div>
-                            <button type="submit" class="btn btn-primary">Đổi mật khẩu</button>
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-5 col-xl-5"></div>
+                            <div class="col-xs-11 col-sm-11 col-md-11 col-lg-7 col-xl-7">
+                                <br>
+                                <button type="submit" class="btn btn-primary">Đổi mật khẩu</button>
+                            </div>
                         </form>
                     </div>
                 </div>
