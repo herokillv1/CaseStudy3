@@ -60,6 +60,9 @@ public class CustomerServlet extends HttpServlet {
             case "alert":
                 alert(request, response);
                 break;
+            case "addproduct":
+                listAllProduct(request,response);
+                break;
             default:
                 listAllProduct(request, response);
                 break;

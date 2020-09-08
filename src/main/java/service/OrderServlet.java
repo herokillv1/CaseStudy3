@@ -1,8 +1,7 @@
 package service;
 
-import connection.ConnectionDBOfOrder;
-import connection.ConnectionDBOfProduct;
-import connection.ConnectionDBOrder;
+import connection.*;
+import model.Customer;
 import model.Order;
 import model.Product;
 
@@ -20,6 +19,7 @@ import java.util.List;
 public class OrderServlet extends HttpServlet {
     ConnectionDBOrder connectionDBOrder = new ConnectionDBOfOrder();
     ConnectionDBOfProduct connectionDBOfProduct = new ConnectionDBOfProduct();
+    ConnectionDBOfCustomer connectionDBOfCustomer = new ConnectionDBOfCustomer();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -58,6 +58,9 @@ public class OrderServlet extends HttpServlet {
         String account = request.getParameter("account");
         request.setAttribute("account", account);
         if (connectionDBOrder.deleteOrder()) {
+            Customer customerCheck = connectionDBOfCustomer.selectCustomerByName(account);
+            String name = customerCheck.getName();
+            request.setAttribute("name", name);
             List<Order> orders = connectionDBOrder.selectAllOrder();
             request.setAttribute("listOrder", orders);
             String message = "Hiện không có sản phẩm nào!";
@@ -76,21 +79,34 @@ public class OrderServlet extends HttpServlet {
         String imagebuy = product.getImageUrl();
         int amountbuy = Integer.parseInt(request.getParameter("amount"));
         String account = request.getParameter("account");
-        request.setAttribute("account", account);
         Order order = new Order(id, namebuy, pricebuy, descriptionbuy, imagebuy, amountbuy);
         connectionDBOrder.insertOrder(order);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/customer");
+        request.setAttribute("account", account);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/customer?action=addproduct");
         dispatcher.forward(request, response);
     }
 
     private void cartPresent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         String account = request.getParameter("account");
         request.setAttribute("account", account);
+        Customer customerCheck = connectionDBOfCustomer.selectCustomerByName(account);
+        String name = customerCheck.getName();
+        request.setAttribute("name", name);
         List<Order> orders = connectionDBOrder.selectAllOrder();
-        request.setAttribute("listOrder", orders);
-        int totalPrice = connectionDBOrder.totalPrice();
-        request.setAttribute("totalPrice", totalPrice);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/cart_of_customer.jsp");
-        dispatcher.forward(request, response);
+        if (orders.size()>0){
+            request.setAttribute("listOrder", orders);
+            int totalPrice = connectionDBOrder.totalPrice();
+            request.setAttribute("totalPrice", totalPrice);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/cart_of_customer.jsp");
+            dispatcher.forward(request, response);
+        }else {
+            request.setAttribute("mess", "");
+            request.setAttribute("listOrder", orders);
+            int totalPrice = connectionDBOrder.totalPrice();
+            request.setAttribute("totalPrice", totalPrice);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/cart_of_customer.jsp");
+            dispatcher.forward(request, response);
+        }
+
     }
 }

@@ -11,11 +11,13 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/main.css">
     <script src="../js/main.js"></script>
+    <link rel="stylesheet" href="../css/all.css">
+    <script src="../js/all.js"></script>
 </head>
 <body>
 
@@ -24,15 +26,18 @@
     <div class="container-fluid header" id="header">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-lg-2 col-xl-2 block-image">
-                <img src="image/logo.png" class="img-responsive img-logo" alt="Lỗi hiển thị">
             </div>
             <div class="col-xs-12 col-sm-12 col-lg-8 col-xl-8 block-background">
                 <h1 class="name-shop">Shop HQ</h1>
+                <br>
+                <div class="container-ef">
+                    <div class="text"><span>Chào mừng bạn đến với shop HQ chuyên Adidas</span></div>
+                </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-lg-2 col-xl-2 block-login">
                 <c:if test='${requestScope["account"] != null}'>
                     <a href="${pageContext.request.contextPath}/customer?action=customer&account=${requestScope["account"]}"
-                       class="customer-link"><span>${requestScope["account"]}</span></a>
+                       class="customer-link"><span>Xin chào ${requestScope["name"]}</span></a>
                     <span>&ensp;|&ensp;</span>
                 </c:if>
                 <a href="${pageContext.request.contextPath}/home" class="customer-link">Thoát</a>
@@ -46,7 +51,6 @@
 <div class="container-fluid menu-navbar">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -54,8 +58,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a href="${pageContext.request.contextPath}/customer?account=${requestScope["account"]}">Trang
-                            chủ</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/customer?account=${requestScope["account"]}">Trang chủ</a>
                     </li>
                 </ul>
             </div>
@@ -66,8 +69,17 @@
 
 <!--đây là section-->
 <div class="container">
+    <c:if test='${requestScope["mess"] != null}'>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-3 col-xl-3"></div>
+        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-9 col-xl-9">
+            <img class="img-responsive img-thumbnail" src="/img/meomeomeo.jpg" alt="ko có" width="550px" height="200px">
+        </div>
+    </c:if>
     <c:if test='${requestScope["message"] != null}'>
-        <h1>${requestScope["message"]}</h1>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-3 col-xl-3"></div>
+        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-9 col-xl-9">
+            <img class="img-responsive img-thumbnail" src="/img/meomeomeo.jpg" alt="ko có" width="550px" height="200px">
+        </div>
     </c:if>
     <jsp:useBean id="listOrder" scope="request" type="java.util.List"/>
     <c:forEach items="${listOrder}" var="orders">
@@ -93,19 +105,20 @@
     </c:forEach>
 </div>
 <!--đây là section-->
-
+<br>
+<br>
 <%--tổng tiền--%>
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 total-amount">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 total-amount">
             <c:if test='${requestScope["totalPrice"] != null}'>
-                <h3>${requestScope["totalPrice"]}</h3>
+                <h3>&ensp;Tổng tiền : ${requestScope["totalPrice"]}</h3>
             </c:if>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 total-amount">
-            <a href="">Thanh toán</a>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2 col-xl-2 total-amount">
+            <a href="">&ensp;&ensp;Thanh toán</a>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 total-amount">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2 col-xl-2 total-amount">
             <a href="${pageContext.request.contextPath}/order?action=delete&account=${requestScope["account"]}">Hủy</a>
         </div>
     </div>
@@ -113,13 +126,36 @@
 <%--tổng tiền--%>
 
 <!--đây là footer-->
-<div class="container-fluid footer">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-lg-12 col-xl-12 footer">
-            <h1>Footer</h1>
-        </div>
+<footer class="page-footer font-small special-color-dark pt-4">
+    <div class="container">
+        <ul class="list-unstyled list-inline text-center">
+            <li class="list-inline-item">
+                <a class="btn-floating btn-fb mx-1" href="https://www.facebook.com/ShopHQCodeGym/">
+                    <i class="fab fa-facebook-f"> </i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="btn-floating btn-gplus mx-1">
+                    <i class="fab fa-google-plus-g"> </i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="btn-floating btn-tw mx-1">
+                    <i class="fab fa-tiktok"> </i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="btn-floating btn-li mx-1">
+                    <i class="fab fa-youtube"> </i>
+                </a>
+            </li>
+        </ul>
     </div>
-</div>
+    <div class="footer-copyright text-center py-3">© 2020
+        All rights reserved:
+        <a href="#"> ShopHQ.com</a>
+    </div>
+</footer>
 <!--đây là footer-->
 
 <!--hiệu ứng-->
