@@ -248,6 +248,7 @@
     </script>
 </c:if>
 <%--dialog box for delete--%>
+
 <%--dialog box for edit--%>
 <c:if test='${requestScope["product"] != null}'>
     <div class="modal fade bs-example-modal-lg-edit" role="dialog" id="editModal"

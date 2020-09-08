@@ -12,10 +12,10 @@ model/Customer.java
  model.Customer
 connection/ConnectionDBCustomer.java
  connection.ConnectionDBCustomer
-connection/ConnectionDBOfOrder.java
- connection.ConnectionDBOfOrder
-connection/ConnectionDBOrder.java
- connection.ConnectionDBOrder
+model/Product.java
+ model.Product
+service/AdminServlet.java
+ service.AdminServlet
 connection/ConnectionDBOfProduct.java
  connection.ConnectionDBOfProduct
 service/HomeServlet.java
@@ -24,9 +24,3 @@ controller/ControlServlet.java
  controller.ControlServlet
 model/Order.java
  model.Order
-model/Product.java
- model.Product
-service/AdminServlet.java
- service.AdminServlet
-service/OrderServlet.java
- service.OrderServlet
