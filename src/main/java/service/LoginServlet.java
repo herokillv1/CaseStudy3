@@ -22,15 +22,6 @@ public class LoginServlet extends HttpServlet {
     ConnectionDBOfProduct connectionDBOfProduct = new ConnectionDBOfProduct();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        action(request, response);
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        action(request, response);
-
-    }
-
-    private void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null)
             action = "";
@@ -44,6 +35,11 @@ public class LoginServlet extends HttpServlet {
                 break;
         }
     }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
 
     private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String account = request.getParameter("customer-account");

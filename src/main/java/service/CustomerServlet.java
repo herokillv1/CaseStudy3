@@ -20,14 +20,27 @@ public class CustomerServlet extends HttpServlet {
     ConnectionDBOfCustomer connectionDBOfCustomer = new ConnectionDBOfCustomer();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        action(request, response);
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "search":
+                listSearch(request, response);
+                break;
+            case "updatecustomer":
+                updateCustomer(request, response);
+                break;
+            case "alert":
+                alert(request, response);
+                break;
+            default:
+                listAllProduct(request, response);
+                break;
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        action(request, response);
-    }
-
-    private void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -42,26 +55,11 @@ public class CustomerServlet extends HttpServlet {
             case "shoes":
                 listShoes(request, response);
                 break;
-            case "search":
-                listSearch(request, response);
-                break;
-            case "add":
-                addInCart(request, response);
-                break;
             case "customer":
                 myAccount(request, response);
                 break;
             case "repassword":
                 rePassword(request, response);
-                break;
-            case "updatecustomer":
-                updateCustomer(request, response);
-                break;
-            case "alert":
-                alert(request, response);
-                break;
-            case "addproduct":
-                listAllProduct(request,response);
                 break;
             default:
                 listAllProduct(request, response);

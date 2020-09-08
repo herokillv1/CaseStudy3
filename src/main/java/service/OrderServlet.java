@@ -22,37 +22,31 @@ public class OrderServlet extends HttpServlet {
     ConnectionDBOfCustomer connectionDBOfCustomer = new ConnectionDBOfCustomer();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            action(request, response);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            action(request, response);
+            String action = request.getParameter("action");
+            if (action == null) {
+                action = "";
+            }
+            switch (action) {
+                case "add":
+                    addInCart(request, response);
+                    break;
+                case "delete":
+                    deleteCart(request, response);
+                    break;
+                default:
+                    cartPresent(request, response);
+                    break;
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
 
-    private void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "";
-        }
-        switch (action) {
-            case "add":
-                addInCart(request, response);
-                break;
-            case "delete":
-                deleteCart(request, response);
-            default:
-                cartPresent(request, response);
-                break;
-        }
-    }
 
     private void deleteCart(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         String account = request.getParameter("account");

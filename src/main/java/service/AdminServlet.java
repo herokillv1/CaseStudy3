@@ -17,14 +17,18 @@ public class AdminServlet extends HttpServlet {
     ConnectionDBOfProduct connectionDBOfProduct = new ConnectionDBOfProduct();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        action(request, response);
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        if ("search".equals(action)) {
+            listSearch(request, response);
+        } else {
+            listAllProduct(request, response);
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        action(request, response);
-    }
-
-    private void action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -38,9 +42,6 @@ public class AdminServlet extends HttpServlet {
                 break;
             case "shoes":
                 listShoes(request, response);
-                break;
-            case "search":
-                listSearch(request, response);
                 break;
             case "delete":
                 deleleProductById(request,response);

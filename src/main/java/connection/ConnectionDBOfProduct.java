@@ -34,15 +34,13 @@ public class ConnectionDBOfProduct implements ConnectionDBProduct {
     }
 
     @Override
-    public boolean insertProduct(Product product) {
-        boolean rowUpdated = false;
+    public void insertProduct(Product product) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PRODUCT_SQL)) {
             setValueOfProduct(product, preparedStatement);
-            rowUpdated = preparedStatement.executeUpdate() > 0;
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return rowUpdated;
     }
 
     @Override

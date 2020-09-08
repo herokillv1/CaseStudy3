@@ -1,31 +1,31 @@
-service/CustomerServlet.java
- service.CustomerServlet
+model/Order.java
+ model.Order
 CharsetFilter.java
  CharsetFilter
-service/LoginServlet.java
- service.LoginServlet
+connection/ConnectionDBOrder.java
+ connection.ConnectionDBOrder
 connection/ConnectionDBOfCustomer.java
  connection.ConnectionDBOfCustomer
-connection/ConnectionDBProduct.java
- connection.ConnectionDBProduct
+model/Product.java
+ model.Product
 model/Customer.java
  model.Customer
 connection/ConnectionDBCustomer.java
  connection.ConnectionDBCustomer
 connection/ConnectionDBOfOrder.java
  connection.ConnectionDBOfOrder
-connection/ConnectionDBOrder.java
- connection.ConnectionDBOrder
+connection/ConnectionDBProduct.java
+ connection.ConnectionDBProduct
+service/LoginServlet.java
+ service.LoginServlet
 connection/ConnectionDBOfProduct.java
  connection.ConnectionDBOfProduct
 service/HomeServlet.java
  service.HomeServlet
 controller/ControlServlet.java
  controller.ControlServlet
-model/Order.java
- model.Order
-model/Product.java
- model.Product
+service/CustomerServlet.java
+ service.CustomerServlet
 service/AdminServlet.java
  service.AdminServlet
 service/OrderServlet.java

@@ -72,7 +72,7 @@
                 <form class="form-inline my-2 my-lg-0"
                       action="${pageContext.request.contextPath}/customer?action=search&account=${requestScope["account"]}"
                       method="post">
-                    <a href="${pageContext.request.contextPath}/order?account=${requestScope["account"]}"><font color="black" size="+1">Giỏ hàng &ensp;</font></a>
+                    <a href="${pageContext.request.contextPath}/order?account=${requestScope["account"]}"><font color="black" size="+1"><i class="fa fa-cart-arrow-down" ></i> &ensp;</font></a>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
                            name="regex">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

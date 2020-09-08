@@ -69,7 +69,7 @@
                 <form class="form-inline my-2 my-lg-0"
                       action="${pageContext.request.contextPath}/admin?action=search&account=${requestScope["account"]}"
                       method="post">
-                    <button class="btn btn-primary" type="submit"><font color="black" size="+1">Thêm</font></button>
+                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target=".bs-example-modal-lg-create"><font color="black" size="+1">Thêm</font></button>
                     <p>&nbsp;&nbsp;</p>
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
                            name="regex">
@@ -111,8 +111,8 @@
                         ${products.getPrice()}
                 </div>
                 <div class="block-button" style="text-align: center">
-                    <a href="${pageContext.request.contextPath}/admin?action=delete&id=${products.getID()}&account=${requestScope["account"]}">Delete</a>
-                    <a href="${pageContext.request.contextPath}/admin?action=edit&id=${products.getID()}&account=${requestScope["account"]}">Edit</a>
+                    <a href="${pageContext.request.contextPath}/admin?action=delete&id=${products.getID()}&account=${requestScope["account"]}"><i class="fa fa-trash"></i>&ensp;&ensp;</a>
+                    <a href="${pageContext.request.contextPath}/admin?action=edit&id=${products.getID()}&account=${requestScope["account"]}"><i class="fa fa-edit"></i></a>
                 </div>
             </div>
         </c:forEach>
@@ -163,56 +163,58 @@
 <div class="modal fade bs-example-modal-lg-create" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <h3 style="text-align: center">Tạo sản phẩm</h3>
             <div class="row">
-                <div class="col-lg-11 col-xl-11 block-contact">
-                    <form action="${pageContext.request.contextPath}/control?action=createProduct&account=${requestScope["account"]}"
-                          method="post">
-                        <h3 style="text-align: center">Edit product</h3>
+                <div class="col-lg-5 col-xl-5 block-image">
+                    <img src="img/logo.png" alt="Lỗi hiển thị" class="img-responsive"
+                         width="300px" height="500px" style="margin: 20px">
+                </div>
+                <div class="col-lg-6 col-xl-6 block-contact">
+                    <h3 style="text-align: center">Đăng ký</h3>
+                    <form action="${pageContext.request.contextPath}/control?action=createProduct&account=${requestScope["account"]}" method="post">
                         <div class="form-group">
                             <label>
-                                <input type="text" class="form-control" name="product-code"
-                                       placeholder="Enter code product">
+                                <input type="text" class="form-control" placeholder="Enter code product"
+                                       required="" name="product-code" size="50">
                             </label>
                         </div>
                         <div class="form-group">
                             <label>
-                                <input type="text" class="form-control" name="product-name"
-                                       placeholder="Enter name product">
+                                <input type="text" class="form-control" placeholder="Enter name product"
+                                       required="" name="product-name" size="50">
                             </label>
                         </div>
                         <div class="form-group">
                             <label>
-                                <input type="text" class="form-control" name="product-type"
-                                       placeholder="Enter type product">
+                                <input type="text" class="form-control" placeholder="Enter type product"
+                                       required="" name="product-type" size="50">
                             </label>
                         </div>
                         <div class="form-group">
                             <label>
-                                <input type="text" class="form-control" name="product-price"
-                                       placeholder="Enter price product">
+                                <input type="text" class="form-control" required=""
+                                       placeholder="Enter price product" name="product-price" size="50">
                             </label>
                         </div>
                         <div class="form-group">
                             <label>
-                                <input type="text" class="form-control" name="product-description"
-                                       placeholder="Enter description product">
+                                <input type="text" class="form-control" required=""
+                                       placeholder="Enter description product" name="product-description" size="50">
                             </label>
                         </div>
                         <div class="form-group">
                             <label>
-                                <input type="text" class="form-control" name="product-imageUrl"
-                                       placeholder="Enter image product">
+                                <input type="text" class="form-control" required=""
+                                       placeholder="Enter image product" name="product-imageUrl" size="50">
                             </label>
                         </div>
                         <div class="form-group">
                             <label>
-                                <input type="text" class="form-control" name="product-amount"
-                                       placeholder="Enter amount product">
+                                <input type="text" class="form-control" required=""
+                                       placeholder="Enter amount product" name="product-amount" size="50">
                             </label>
                         </div>
                         <div class="form-group" style="text-align: center">
-                            <input type="submit" class="btn btn-primary" value="Create product">
+                            <input type="submit" class="btn btn-primary" value="Create New Product">
                         </div>
                     </form>
                 </div>
